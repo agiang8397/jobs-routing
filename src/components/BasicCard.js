@@ -1,12 +1,11 @@
 import * as React from "react";
-
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
-import { Box, Stack } from "@mui/system";
+import { Box } from "@mui/system";
 import { Chip } from "@mui/material";
 
 export default function BasicCard({ job }) {
