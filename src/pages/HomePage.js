@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import BasicCard from "../components/BasicCard";
-import jobs from "../jobs.json";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import { Stack } from "@mui/system";
+import { Container, Stack } from "@mui/system";
 import { Pagination } from "@mui/material";
+
+import jobs from "../jobs.json";
 
 function HomePage() {
   const [page, setPage] = useState(1);
@@ -23,20 +24,27 @@ function HomePage() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }} mt={2}>
-      <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
-        {jobs.slice(data.from, data.to).map((job) => (
-          <Grid item xs={4} key={job.id}>
-            <BasicCard job={job} />
-          </Grid>
-        ))}
-      </Grid>
-      <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-        <Stack spacing={2}>
-          <Pagination count={3} page={page} onChange={handleChange} />
-        </Stack>
+    <Container sx={{ backgroundColor: "#90caf9" }}>
+      <Box sx={{ flexGrow: 1 }} mt={2}>
+        <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
+          {jobs.slice(data.from, data.to).map((job) => (
+            <Grid item xs={4} key={job.id}>
+              <BasicCard job={job} />
+            </Grid>
+          ))}
+        </Grid>
+        <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
+          <Stack spacing={2}>
+            <Pagination
+              count={3}
+              page={page}
+              onChange={handleChange}
+              color="primary"
+            />
+          </Stack>
+        </Box>
       </Box>
-    </Box>
+    </Container>
   );
 }
 

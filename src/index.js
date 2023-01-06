@@ -1,21 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+
+import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import DetailPages from "./pages/DetailPages";
-import HomePage from "./pages/HomePage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <App />
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/job/:id" element={<DetailPages />} />
-      <Route path="*" element={<div>404</div>} />
-    </Routes>
   </BrowserRouter>
 );
 
