@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import BasicCard from "../components/BasicCard";
-import Box from "@mui/material/Box";
+import Box from "@mui/system/Box";
 import Grid from "@mui/material/Grid";
 import { Container, Stack } from "@mui/system";
 import { Pagination } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 import jobs from "../jobs.json";
 
@@ -22,9 +23,11 @@ function HomePage() {
       setData({ ...data, from: 12, to: 18 });
     }
   };
+  const theme = useTheme();
+  console.log(theme);
 
   return (
-    <Container sx={{ backgroundColor: "#90caf9" }}>
+    <Container>
       <Box sx={{ flexGrow: 1 }} mt={2}>
         <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
           {jobs.slice(data.from, data.to).map((job) => (
@@ -33,7 +36,13 @@ function HomePage() {
             </Grid>
           ))}
         </Grid>
-        <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            mt: 2,
+          }}
+        >
           <Stack spacing={2}>
             <Pagination
               count={3}

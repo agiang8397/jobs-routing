@@ -4,15 +4,20 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
+import LogoutIcon from "@mui/icons-material/Logout";
+import LoginIcon from "@mui/icons-material/Login";
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import Brightness2Icon from "@mui/icons-material/Brightness2";
 import Button from "@mui/material/Button";
+import Avatar from "@mui/material/Avatar";
 import { Switch } from "@mui/material";
+import { Outlet, useNavigate } from "react-router-dom";
 
 import { ModeContext } from "../App";
+import { AuthContext } from "../auth/AuthContext";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -58,6 +63,19 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function SearchAppBar() {
   const handleChangeMode = useContext(ModeContext);
+  const navigate = useNavigate();
+
+  const auth = useContext(AuthContext);
+
+  function handlClickLogin() {
+    navigate("/login");
+  }
+
+  const handlClickLogout = () => {
+    auth.signout(() => {
+      navigate("/");
+    });
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -76,7 +94,12 @@ export default function SearchAppBar() {
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", sm: "block" },
+              cursor: "pointer",
+            }}
+            onClick={() => navigate("/")}
           >
             TOPIT
           </Typography>
@@ -90,10 +113,33 @@ export default function SearchAppBar() {
             />
           </Search>
           <Switch onChange={handleChangeMode} />
-          <Brightness2Icon />
-          <Button color="inherit">Login</Button>
+          <Brightness2Icon sx={{ mr: 3 }} />
+          {auth?.user ? (
+            <>
+              <Button
+                onClick={handlClickLogout}
+                variant="contained"
+                startIcon={<LogoutIcon />}
+              >
+                Logout
+              </Button>
+              <Avatar
+                src="/images/avatar/1.jpg"
+                sx={{ width: 40, height: 40, ml: 1 }}
+              />
+            </>
+          ) : (
+            <Button
+              onClick={handlClickLogin}
+              variant="contained"
+              startIcon={<LoginIcon />}
+            >
+              Login
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
+      <Outlet />
     </Box>
   );
 }

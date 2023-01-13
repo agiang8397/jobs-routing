@@ -4,12 +4,13 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Box } from "@mui/system";
 import { Chip } from "@mui/material";
 
 export default function BasicCard({ job }) {
   const navigation = useNavigate();
+  const location = useLocation();
 
   return (
     <Card sx={{ height: 350 }}>
