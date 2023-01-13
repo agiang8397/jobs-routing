@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 

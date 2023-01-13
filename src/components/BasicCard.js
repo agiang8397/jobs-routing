@@ -10,7 +10,6 @@ import { Chip } from "@mui/material";
 
 export default function BasicCard({ job }) {
   const navigation = useNavigate();
-  const location = useLocation();
 
   return (
     <Card sx={{ height: 350 }}>
