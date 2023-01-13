@@ -9,15 +9,10 @@ import DetailPages from "./pages/DetailPages";
 import RequireAuth from "./auth/RequireAuth";
 
 import Login from "./pages/Login";
-import LoginModal from "./components/LoginModal";
 
 export const ModeContext = createContext();
 
 function App() {
-  const location = useLocation();
-  const state = location.state;
-  console.log(state);
-
   const [mode, setMode] = useState("light");
   const customTheme = createTheme({
     palette: {
